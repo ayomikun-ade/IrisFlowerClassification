@@ -12,7 +12,7 @@ app = FastAPI()
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins = ["https://irisflower-2a8m.onrender.com/"],
+    allow_origins = ["https://irisflower-2a8m.onrender.com"],
     allow_credentials = True,
     allow_methods = ["GET", "POST", "OPTIONS"],
     allow_headers = ["x"],
