@@ -10,6 +10,7 @@ const Flower = () => {
   });
 
   const [prediction, setPrediction] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const handleChange = (e) => {
     const { id, value } = e.target;
@@ -30,6 +31,8 @@ const Flower = () => {
       petal_width: parseFloat(features.p_width),
     };
 
+    setLoading(true);
+
     try {
       const response = await axios.post(
         "https://irisflowerclassification-yqhg.onrender.com/predict",
@@ -39,6 +42,8 @@ const Flower = () => {
       console.log(response);
     } catch (error) {
       console.log(error);
+    } finally {
+      setLoading(false);
     }
   };
   return (
@@ -93,9 +98,12 @@ const Flower = () => {
         </div>
         <button
           type="submit"
-          className="bg-green-600 rounded-lg px-3 py-1 text-white mt-4 text-center w-full"
+          disabled={loading}
+          className={`bg-green-600 rounded-lg px-3 py-1 text-white mt-4 text-center w-full ${
+            loading ? "opacity-75 cursor-not-allowed" : ""
+          }`}
         >
-          Predict
+          {loading ? "Loading..." : "Predict"}
         </button>
       </form>
 
