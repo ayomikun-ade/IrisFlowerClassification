@@ -31,7 +31,10 @@ const Flower = () => {
     };
 
     try {
-      const response = await axios.post("http://localhost:8000/predict", data);
+      const response = await axios.post(
+        "https://irisflowerclassification-yqhg.onrender.com/predict",
+        data
+      );
       setPrediction(response.data.prediction);
       console.log(response);
     } catch (error) {
